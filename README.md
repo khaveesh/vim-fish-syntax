@@ -3,12 +3,12 @@ Syntax and ftplugin files for fish shell scripts
 
 ## Installation
 
-I recommend the [vim-plug](https://github.com/junegunn/vim-plug) plugin manager, but you can use any other plugin manager if you want.
+I recommend the native packages support built into Vim8 and NeoVim, but you can use any other plugin manager if you want.
 
-In case of vim-plug, add the following line to your vimrc between the begin and end plug calls:
+In case of minpac, add the following line to your vimrc after the init call:
 
 ```vim
-Plug 'khaveesh/vim-fish-syntax'
+call minpac#add('khaveesh/vim-fish-syntax')
 ```
 
-Then run :PlugInstall after sourcing your vimrc.
+Then run :call minpac#update() after sourcing your vimrc.
