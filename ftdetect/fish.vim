@@ -1,6 +1,6 @@
-au BufNewFile,BufRead *.fish set ft=fish
+au BufNewFile,BufRead *.fish setf fish
 
 autocmd BufNewFile,BufRead,StdinReadPost *
 			\ if getline(1) =~ '^#!.*\Wfish\s*$' |
-			\   set ft=fish |
+			\   setf fish |
 			\ endif
