@@ -1,5 +1,5 @@
 if exists('b:did_ftplugin')
-	finish
+    finish
 end
 let b:did_ftplugin = 1
 
@@ -17,26 +17,28 @@ setlocal suffixesadd^=.fish
 
 " Use the 'j' format option when available.
 if v:version ># 703 || v:version ==# 703 && has('patch541')
-	setlocal formatoptions+=j
+    setlocal formatoptions+=j
 endif
 
 let b:match_ignorecase = 0
 if has('patch-7.3.1037')
-	let s:if = '%(else\s\+)\@15<!if'
+    let s:if = '%(else\s\+)\@15<!if'
 else
-	let s:if = '%(else\s\+)\@<!if'
+    let s:if = '%(else\s\+)\@<!if'
 endif
 
 let b:match_words = escape(
-			\'<%(begin|function|'.s:if.'|switch|while|for)>:<else\s\+if|case>:<else>:<end>'
-			\, '<>%|)')
+            \'<%(begin|function|'.s:if.'|switch|while|for)>:<else\s\+if|case>:<else>:<end>'
+            \, '<>%|)')
+
+setlocal omnifunc=fish#Complete
 
 let b:undo_ftplugin = "
-			\ setlocal comments< commentstring< define< foldexpr< formatoptions<
-			\|setlocal include< iskeyword< suffixesadd<
-			\|setlocal formatexpr< omnifunc< path< keywordprg<
-			\|unlet! b:match_words
-			\"
+            \ setlocal comments< commentstring< define< foldexpr< formatoptions<
+            \|setlocal include< iskeyword< suffixesadd<
+            \|setlocal formatexpr< omnifunc< path< keywordprg<
+            \|unlet! b:match_words
+            \"
 
 let &cpo = s:save_cpo
 unlet s:save_cpo

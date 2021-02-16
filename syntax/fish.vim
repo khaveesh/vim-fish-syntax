@@ -1,5 +1,5 @@
 if exists('b:current_syntax')
-	finish
+    finish
 endif
 
 syntax case match
@@ -20,8 +20,8 @@ syntax match fishStatement /\v;\s*\zs\k+>/
 syntax match fishCommandSub /\v\(\s*\zs\k+>/
 
 syntax region fishLineContinuation matchgroup=fishStatement
-			\ start='\v^\s*\zs\k+>' skip='\\$' end='$'
-			\ contains=fishSpecial,fishIdentifier,fishString,fishCharacter,fishStatement,fishCommandSub,fishComment
+            \ start='\v^\s*\zs\k+>' skip='\\$' end='$'
+            \ contains=fishSpecial,fishIdentifier,fishString,fishCharacter,fishStatement,fishCommandSub,fishComment
 
 highlight default link fishKeyword Keyword
 highlight default link fishConditional Conditional
