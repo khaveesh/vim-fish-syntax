@@ -9,15 +9,19 @@ set cpo&vim
 setlocal comments=:#
 setlocal commentstring=#%s
 setlocal define=\\v^\\s*function>
-setlocal formatoptions+=ron1
+setlocal formatoptions+=n1
 setlocal formatoptions-=t
 setlocal include=\\v^\\s*\\.>
-setlocal iskeyword=@,48-57,-,_,.
+setlocal iskeyword=@,48-57,+,-,_,.
 setlocal suffixesadd^=.fish
 
 " Use the 'j' format option when available.
 if v:version ># 703 || v:version ==# 703 && has('patch541')
     setlocal formatoptions+=j
+endif
+
+if executable('fish')
+    setlocal omnifunc=fish#Complete
 endif
 
 let b:match_ignorecase = 0
@@ -30,8 +34,8 @@ endif
 let b:match_words = escape(
             \'<%(begin|function|'.s:if.'|switch|while|for)>:<else\s\+if|case>:<else>:<end>'
             \, '<>%|)')
+let b:match_skip = 's:comment\|string\|deref'
 
-setlocal omnifunc=fish#Complete
 
 let b:undo_ftplugin = "
             \ setlocal comments< commentstring< define< foldexpr< formatoptions<
