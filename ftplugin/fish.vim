@@ -41,7 +41,7 @@ let b:match_skip = 's:comment\|string\|deref'
 let b:undo_ftplugin = "
             \ setlocal comments< commentstring< define< foldexpr< formatoptions<
             \|setlocal include< iskeyword< suffixesadd<
-            \|setlocal formatexpr< omnifunc< path< keywordprg<
+            \|setlocal formatexpr< omnifunc< formatprg< path< keywordprg<
             \|unlet! b:match_words
             \"
 
