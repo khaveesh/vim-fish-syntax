@@ -9,6 +9,7 @@ set cpo&vim
 setlocal comments=:#
 setlocal commentstring=#%s
 setlocal define=\\v^\\s*function>
+setlocal foldexpr=fish#Fold()
 setlocal formatoptions+=n1
 setlocal formatoptions-=t
 setlocal include=\\v^\\s*\\.>
@@ -24,6 +25,9 @@ if executable('fish')
     setlocal omnifunc=fish#Complete
     setlocal formatprg=fish_indent
 endif
+
+command! -nargs=? FishHelp call fish#Help(<q-args>)
+setlocal keywordprg=:FishHelp
 
 let b:match_ignorecase = 0
 if has('patch-7.3.1037')
