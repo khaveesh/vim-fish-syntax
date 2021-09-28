@@ -10,43 +10,28 @@ setlocal comments=:#
 setlocal commentstring=#%s
 setlocal define=\\v^\\s*function>
 setlocal foldexpr=fish#Fold()
-setlocal formatoptions+=n1
+setlocal formatoptions+=jn1
 setlocal formatoptions-=t
 setlocal include=\\v^\\s*\\.>
 setlocal iskeyword=@,48-57,+,-,_,.
 setlocal suffixesadd^=.fish
-
-" Use the 'j' format option when available.
-if v:version ># 703 || v:version ==# 703 && has('patch541')
-    setlocal formatoptions+=j
-endif
 
 if executable('fish')
     setlocal omnifunc=fish#Complete
     setlocal formatprg=fish_indent
 endif
 
-command! -nargs=? FishHelp call fish#Help(<q-args>)
-setlocal keywordprg=:FishHelp
-
 let b:match_ignorecase = 0
-if has('patch-7.3.1037')
-    let s:if = '%(else\s\+)\@15<!if'
-else
-    let s:if = '%(else\s\+)\@<!if'
-endif
-
 let b:match_words = escape(
-            \'<%(begin|function|'.s:if.'|switch|while|for)>:<else\s\+if|case>:<else>:<end>'
-            \, '<>%|)')
+            \ '<%(begin|function|%(else\s\+)\@15<!if|switch|while|for)>'
+            \     . ':<else\s\+if|case>:<else>:<end>',
+            \ '<>%|)')
 let b:match_skip = 's:comment\|string\|deref'
-
 
 let b:undo_ftplugin = "
             \ setlocal comments< commentstring< define< foldexpr< formatoptions<
-            \|setlocal include< iskeyword< suffixesadd<
-            \|setlocal formatexpr< omnifunc< formatprg< path< keywordprg<
-            \|unlet! b:match_words
+            \ | setlocal include< iskeyword< suffixesadd< omnifunc< formatprg<
+            \ | unlet! b:match_words b:match_skip b:match_ignorecase
             \"
 
 let &cpo = s:save_cpo

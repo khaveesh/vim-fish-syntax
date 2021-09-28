@@ -1,4 +1,4 @@
-au BufNewFile,BufRead *.fish setfiletype fish
+autocmd BufNewFile,BufRead *.fish setfiletype fish
 
 " Detect fish scripts by the shebang line.
 autocmd BufNewFile,BufRead,StdinReadPost *
