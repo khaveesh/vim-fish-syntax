@@ -19,6 +19,7 @@ setlocal suffixesadd^=.fish
 if executable('fish')
     setlocal omnifunc=fish#Complete
     setlocal formatprg=fish_indent
+    let b:formatprg = [ 'fish_indent' ]
 endif
 
 let b:match_ignorecase = 0
